@@ -35,7 +35,7 @@ public class UserController {
     User addUser(@RequestBody User addedUser) {
         return repository.insert(addedUser);
     }
-
+    //principal 是spring 上下文的权限
     @PostAuthorize("returnObject.username == principal.username or hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable String id) {
