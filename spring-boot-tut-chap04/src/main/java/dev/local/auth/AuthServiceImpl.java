@@ -60,8 +60,11 @@ public class AuthServiceImpl implements AuthService {
     public String login(String username, String password) {
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
         // Perform the security
-        //暂时注释掉 这段是用来验证账户名密码是否正确的
-       /* final Authentication authentication = authenticationManager.authenticate(upToken);
+        //暂时注释掉 这段是用来验证账户名密码是否正确的  authenticationManager.authenticate 的
+        //时候 会调用loadUserByUsername 拿userdetail信息 然后用userdetail信息的usernamepassword
+        //和传进比较 由于涉及到密码加密解密 所以会比较不通过 如果注释掉 .passwordEncoder(passwordEncoder());
+        //则没问题
+        /*final Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);*/
 
         // Reload password post-security so we can generate token
